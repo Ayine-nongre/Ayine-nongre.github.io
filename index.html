@@ -264,6 +264,20 @@ a:focus-visible { outline: 1px solid #111; outline-offset: 2px; }
   .tl-year { font-size: 12px; }
 }
 
+.tl-right strong a {
+  color: #111;
+  border-bottom: 1px solid #e8e8e8;
+}
+.tl-right strong a:hover { border-bottom-color: #111; }
+.writing-all {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #999;
+  border-bottom: 1px solid #e8e8e8;
+}
+.writing-all:hover { color: #111; border-bottom-color: #111; }
+
 .sidebar-edu {
   font-size: 14px;
   color: #aaa;
@@ -459,8 +473,8 @@ a:focus-visible { outline: 1px solid #111; outline-offset: 2px; }
           <span class="tl-year">2024–25</span>
           <div class="tl-right">
             <strong>Backend Engineer · Spicodex</strong>
-            <p>Led backend development on a waste management platform — booking
-            services, real-time driver routing, and online payments — built on
+            <p>Led backend development on a waste management platform booking
+            services, real-time driver routing, and online payments built on
             Node.js, Express, and MySQL. Also built the admin system for a dating
             platform: user management, merchant payouts, dispute resolution, and
             automated approval workflows.</p>
@@ -468,6 +482,39 @@ a:focus-visible { outline: 1px solid #111; outline-offset: 2px; }
         </div>
 
       </div>
+    </div>
+
+    <!-- WRITING -->
+    <div class="sec" id="writing">
+      <h2 class="sec-heading">Writing</h2>
+      <div class="tl">
+
+        <div class="tl-row">
+          <span class="tl-year">2026</span>
+          <div class="tl-right">
+            <strong>
+              <a href="https://ayinenongre.hashnode.dev/string-concatenation-vs-string-builder-and-memory-in-csharp" target="_blank" rel="noopener">
+                What String Concatenation Taught Me About Memory in C# ↗
+              </a>
+            </strong>
+            <p>A benchmarked look at how C# string immutability affects memory allocation showing a 30x difference between repeated concatenation and StringBuilder across 1,000 iterations, and why it matters at scale.</p>
+          </div>
+        </div>
+
+        <div class="tl-row">
+          <span class="tl-year">2023</span>
+          <div class="tl-right">
+            <strong>
+              <a href="https://ayinenongre.hashnode.dev/sending-emails-to-users-from-your-server-using-nodemailer-nodejs-and-gmail-services" target="_blank" rel="noopener">
+                Sending Emails from Your Server with Nodemailer and Gmail ↗
+              </a>
+            </strong>
+            <p>A practical guide to setting up transactional email from a Node.js server using Nodemailer and Gmail's SMTP service, with working configuration and common pitfalls.</p>
+          </div>
+        </div>
+
+      </div>
+      <a class="writing-all" href="https://ayinenongre.hashnode.dev" target="_blank" rel="noopener">All writing ↗</a>
     </div>
 
     <!-- CONTACT -->
