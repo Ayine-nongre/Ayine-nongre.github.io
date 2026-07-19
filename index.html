@@ -3,858 +3,503 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eugene Atinbire Ayine-nongre — Backend Engineer</title>
-<meta name="description" content="Backend engineer in Accra, Ghana, building systems infrastructure — rate limiters, gateways, search engines — one deliberate rep at a time.">
+<title>Eugene Atinbire Ayine-nongre</title>
+<meta name="description" content="Backend engineer in Accra, Ghana. C# / .NET, Angular, healthcare and enterprise systems. Open to remote contract work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 
-  /* ============ TOKENS ============ */
-  :root{
-    --bg:        #171B23;
-    --bg-soft:   #1E232D;
-    --paper:     #F1EDE4;
-    --paper-2:   #E8E2D2;
-    --paper-line:#D8D2C2;
-    --ink:       #1B1F27;
-    --ink-soft:  #5A5F6B;
-    --cream:     #E8E6DD;
-    --cream-dim: #9DA1AC;
-    --line:      #2E333E;
-    --copper:    #C97D3C;
-    --copper-soft: rgba(201,125,60,0.16);
-    --sage:      #6B8F71;
-    --sage-soft: rgba(107,143,113,0.16);
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; }
 
-    --serif: "Fraunces", serif;
-    --sans:  "IBM Plex Sans", sans-serif;
-    --mono:  "IBM Plex Mono", monospace;
+body {
+  background: #fff;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
 
-    --container: 880px;
-  }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 1px solid #111; outline-offset: 2px; }
 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  html, body{ overflow-x: hidden; width: 100%; }
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--cream);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  img,svg{ display:block; max-width:100%; }
-  a{ color: inherit; text-decoration: none; }
+/* ── TWO-COLUMN LAYOUT ─────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  min-height: 100vh;
+}
 
-  /* subtle blueprint grid texture on dark sections */
-  body{
-    background-image:
-      linear-gradient(var(--bg), var(--bg)),
-      repeating-linear-gradient(0deg, rgba(232,230,221,0.025) 0 1px, transparent 1px 64px),
-      repeating-linear-gradient(90deg, rgba(232,230,221,0.025) 0 1px, transparent 1px 64px);
-  }
+/* ── SIDEBAR ───────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 48px 32px 48px 40px;
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 
-  :focus-visible{
-    outline: 2px solid var(--copper);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+.sidebar-name {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #111;
+  margin-bottom: 16px;
+}
 
-  .wrap{
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  @media (max-width: 480px){
-    .wrap{ padding: 0 18px; }
-  }
+.sidebar-role {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
 
-  .eyebrow{
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-  }
-  .eyebrow-sub{
-    display: block;
-    margin: 40px 0 8px;
-  }
+.sidebar-location {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 28px;
+}
 
-  /* ============ NAV ============ */
-  .nav{
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(10px);
-    background: rgba(23,27,35,0.78);
-    border-bottom: 1px solid var(--line);
+.sidebar-divider {
+  height: 1px;
+  background: #e8e8e8;
+  margin-bottom: 24px;
+}
+
+.sidebar-avail {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #1a4731;
+  margin-bottom: 14px;
+}
+.avail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1a4731;
+  flex-shrink: 0;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.sidebar-links a {
+  font-size: 13px;
+  color: #555;
+}
+.sidebar-links a:hover { color: #111; }
+.sidebar-links a::after {
+  content: ' ↗';
+  color: #bbb;
+}
+
+.stack-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stack-list span {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ── CONTENT ───────────────────────────── */
+.content {
+  padding: 48px 52px 96px;
+  max-width: 660px;
+}
+
+.content-intro {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.75;
+  margin-bottom: 52px;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 48px;
+}
+
+/* ── SECTIONS ──────────────────────────── */
+.sec {
+  margin-bottom: 52px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.sec:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sec-heading {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.prose p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: #111; font-weight: 500; }
+
+/* ── WORK TABLE ────────────────────────── */
+.work-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.work-table thead tr {
+  border-bottom: 1px solid #e8e8e8;
+}
+.work-table th {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bbb;
+  padding-bottom: 10px;
+  text-align: left;
+}
+.work-table th + th { padding-left: 20px; }
+.work-table td {
+  padding: 15px 0;
+  vertical-align: top;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+  font-size: 14px;
+}
+.work-table tbody tr:last-child td { border-bottom: none; }
+.work-table td + td { padding-left: 20px; }
+
+.td-name {
+  font-weight: 500;
+  color: #111;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.td-what { line-height: 1.55; }
+.td-outcome {
+  white-space: nowrap;
+  font-size: 13px;
+  color: #888;
+}
+.td-status { white-space: nowrap; font-size: 13px; }
+.td-status.s { color: #1a4731; }
+.td-status.b { color: #999; }
+.td-link { text-align: right; }
+.td-link a { color: #bbb; font-size: 15px; }
+.td-link a:hover { color: #111; }
+
+@media (max-width: 620px) {
+  .work-table thead { display: none; }
+  .work-table, .work-table tbody,
+  .work-table tr, .work-table td { display: block; }
+  .work-table tr {
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
   }
-  .nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
+  .work-table tr:last-child { border-bottom: none; }
+  .work-table td {
+    padding: 2px 0;
+    border-bottom: none;
+  }
+  .work-table td + td { padding-left: 0; }
+  .td-what { display: none; }
+  .td-link { text-align: left; }
+}
+
+/* ── TIMELINE ──────────────────────────── */
+.tl { display: flex; flex-direction: column; }
+.tl-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.tl-row:last-child { border-bottom: none; padding-bottom: 0; }
+.tl-year { font-size: 13px; color: #bbb; padding-top: 1px; }
+.tl-right strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 5px;
+}
+.tl-right p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+}
+.tl-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+.tl-refs a {
+  font-size: 12px;
+  color: #aaa;
+}
+.tl-refs a:hover { color: #111; }
+
+@media (max-width: 480px) {
+  .tl-row { grid-template-columns: 1fr; gap: 4px; }
+  .tl-year { font-size: 12px; }
+}
+
+.sidebar-edu {
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.55;
+  margin-top: 16px;
+}
+.contact-note {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 14px;
+}
+.contact-email {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: #111;
+  border-bottom: 1px solid #ddd;
+  display: inline-block;
+  line-height: 1.4;
+}
+.contact-email:hover { border-bottom-color: #111; }
+
+/* ── MOBILE: stack layout ──────────────── */
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: 36px 24px 28px;
+    border-right: none;
+    border-bottom: 1px solid #e8e8e8;
+    flex-direction: row;
     flex-wrap: wrap;
-    row-gap: 8px;
-    padding: 16px 24px;
-    max-width: var(--container);
-    margin: 0 auto;
+    gap: 0;
+    align-items: flex-start;
   }
-  .nav-brand{
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--cream);
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-  .nav-brand .dot{
-    width:7px; height:7px; border-radius:50%;
-    background: var(--sage);
-    box-shadow: 0 0 0 3px var(--sage-soft);
-    flex-shrink: 0;
-  }
-  .nav-tag{ color: var(--cream-dim); }
-  .nav-links{
-    display:flex;
-    gap: 22px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-  }
-  .nav-links a:hover{ color: var(--copper); }
-  .nav-links .short{ display:none; }
-
-  @media (max-width: 640px){
-    .nav-links{ gap: 14px; }
-    .nav-links .ver{ display:none; }
-  }
-  @media (max-width: 560px){
-    .nav-tag{ display:none; }
-  }
-  @media (max-width: 460px){
-    .nav-inner{ padding: 12px 16px; gap: 6px; }
-    .nav-brand{ font-size: 12px; }
-    .nav-links{ gap: 10px; font-size: 10.5px; }
-    .nav-links .full{ display:none; }
-    .nav-links .short{ display:inline; }
-  }
-
-  /* ============ HERO ============ */
-  .hero{
-    padding: 72px 0 56px;
-  }
-  .response-card{
-    background: var(--paper);
-    color: var(--ink);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.55);
-    max-width: 560px;
-  }
-  .response-head{
-    display:flex;
-    align-items:center;
-    gap: 10px;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--paper-line);
-    font-family: var(--mono);
-    font-size: 13px;
-    flex-wrap: wrap;
-  }
-  .pill{
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    padding: 3px 8px;
-    border-radius: 4px;
-    line-height: 1.4;
-  }
-  .pill.get{ background: var(--copper-soft); color: var(--copper); }
-  .pill.post{ background: var(--sage-soft); color: var(--sage); }
-  .path{ color: var(--ink-soft); }
-  .status-ok{
-    margin-left: auto;
-    background: var(--sage-soft);
-    color: var(--sage);
-  }
-  .response-body{ padding: 16px 18px 18px; }
-  .field{
-    display:flex;
-    gap: 14px;
-    padding: 6px 0;
-    font-family: var(--mono);
-    font-size: 13px;
-    border-bottom: 1px dashed var(--paper-line);
-  }
-  .field:last-child{ border-bottom:none; }
-  .field .key{ color: var(--ink-soft); width: 76px; flex-shrink:0; }
-  .field .val{ color: var(--ink); display:flex; align-items:center; gap:8px; flex-wrap: wrap; min-width: 0; }
-
-  .dot{
-    width:7px; height:7px; border-radius:50%;
-    display:inline-block;
-  }
-  .dot.shipped{ background: var(--sage); box-shadow:0 0 0 3px var(--sage-soft); }
-  .dot.building{ background: var(--copper); box-shadow:0 0 0 3px var(--copper-soft); animation: pulse 2.2s infinite; }
-
-  @keyframes pulse{
-    0%,100%{ opacity:1; }
-    50%{ opacity:0.45; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .dot.building{ animation:none; }
-  }
-
-  .hero-text{
-    margin-top: 40px;
-    max-width: 640px;
-  }
-  h1{
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2rem, 4.4vw, 3.1rem);
-    line-height: 1.16;
-    margin: 0 0 18px;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-  }
-  h1 em{
-    font-style: italic;
-    font-weight: 400;
-    color: var(--copper);
-  }
-  .hero-sub{
-    font-size: 17px;
-    color: var(--cream-dim);
-    max-width: 540px;
-  }
-  .value-row{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 24px;
-  }
-  .value-pill{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--cream);
-    border: 1px solid var(--line);
-    background: rgba(232,230,221,0.04);
-    padding: 6px 13px;
-    border-radius: 20px;
-  }
-
-  @media (max-width: 640px){
-    .hero{ padding: 48px 0 36px; }
-    .hero-text{ margin-top: 28px; }
-    .response-head{ padding: 11px 14px; font-size: 12px; }
-    .response-body{ padding: 14px 14px 16px; }
-    .field{ font-size: 12px; }
-  }
-  @media (max-width: 480px){
-    h1{ font-size: clamp(1.6rem, 7.5vw, 2.1rem); }
-    .hero-sub{ font-size: 15.5px; }
-    .value-row{ gap: 8px; margin-top: 18px; }
-    .value-pill{ font-size: 11px; padding: 5px 11px; }
-  }
-  @media (max-width: 380px){
-    .field{ flex-direction: column; gap: 2px; padding: 8px 0; }
-    .field .key{ width:auto; }
-    .response-head{ gap: 8px; }
-    .status-ok{ margin-left: 0; }
-  }
-
-  /* ============ SECTION SHELL ============ */
-  section{ padding: 64px 0; }
-  .section-head{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
+  .sidebar-name { width: 100%; font-size: 1.3rem; margin-bottom: 8px; }
+  .sidebar-role, .sidebar-location { width: 100%; }
+  .sidebar-location { margin-bottom: 16px; }
+  .sidebar-divider { width: 100%; margin-bottom: 16px; }
+  .sidebar-avail { width: 100%; }
+  .sidebar-links {
+    flex-direction: row;
     gap: 16px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 18px;
-  }
-  .section-head h2{
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.7rem;
-    margin: 4px 0 0;
-    color: var(--cream);
-  }
-  @media (max-width: 640px){
-    section{ padding: 44px 0; }
-    .section-head{ margin-bottom: 24px; padding-bottom: 14px; }
-    .section-head h2{ font-size: 1.4rem; }
-  }
-
-  /* ============ PHILOSOPHY ============ */
-  .philosophy p{
-    font-size: 17px;
-    color: var(--cream-dim);
-    max-width: 640px;
-  }
-  .philosophy p + p{ margin-top: 16px; }
-  .philosophy strong{ color: var(--cream); font-weight: 600; }
-
-  .stat-row{
-    display:flex;
-    gap: 28px;
-    margin-top: 36px;
-    flex-wrap: wrap;
-  }
-  .stat{
-    font-family: var(--mono);
-  }
-  .stat .num{
-    font-family: var(--serif);
-    font-size: 1.9rem;
-    color: var(--copper);
-    display:block;
-  }
-  .stat .lbl{
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-  }
-
-  /* ============ CHANGELOG ============ */
-  .release{
-    display:grid;
-    grid-template-columns: 120px 1fr;
-    gap: 24px;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .release:last-child{ border-bottom:none; }
-  .release-tag{
-    font-family: var(--mono);
-  }
-  .release-version{
-    display:inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--bg);
-    background: var(--cream);
-    padding: 3px 9px;
-    border-radius: 4px;
-  }
-  .release.current .release-version{
-    background: var(--copper);
-  }
-  .release-year{
-    display:block;
-    margin-top: 8px;
-    font-size: 12px;
-    color: var(--cream-dim);
-  }
-  .release-title{
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin: 0 0 10px;
-    color: var(--cream);
-    display:flex;
-    align-items:center;
-    gap: 10px;
-  }
-  .badge-progress{
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--copper);
-    border: 1px solid var(--copper);
-    border-radius: 20px;
-    padding: 2px 8px;
-  }
-  .release-body p{
-    color: var(--cream-dim);
-    font-size: 15px;
-    margin: 0 0 14px;
-    max-width: 560px;
-  }
-  .tag-row{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-  .tag{
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--cream-dim);
-    border: 1px solid var(--line);
-    padding: 3px 9px;
-    border-radius: 4px;
-  }
-  .repo-links{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    font-family: var(--mono);
-    font-size: 13px;
-  }
-  .repo-links a{ color: var(--copper); border-bottom: 1px solid transparent; }
-  .repo-links a:hover{ border-bottom-color: var(--copper); }
-
-  @media (max-width: 600px){
-    .release{ grid-template-columns: 1fr; gap: 10px; }
-  }
-
-  /* ============ ENDPOINTS ============ */
-  .endpoint{
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 20px 22px;
     margin-bottom: 16px;
   }
-  .endpoint-head{
-    display:flex;
-    align-items:center;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-family: var(--mono);
-    font-size: 14px;
+  .stack-label, .stack-list { display: none; }
+  .content {
+    padding: 36px 24px 72px;
   }
-  .endpoint-head .path{ color: var(--cream); }
-  .endpoint-status{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--cream-dim);
-  }
-  .endpoint-desc{
-    color: var(--cream-dim);
-    font-size: 15px;
-    margin: 14px 0 14px;
-    max-width: 600px;
-  }
-  .endpoint-foot{
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .endpoint-foot a{
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--copper);
-  }
-  .endpoint-foot a:hover{ text-decoration: underline; }
+  .content-intro { margin-bottom: 40px; padding-bottom: 36px; }
+  .sec { margin-bottom: 40px; padding-bottom: 40px; }
+}
 
-  @media (max-width: 480px){
-    .endpoint{ padding: 16px 16px; }
-    .stat-row{ gap: 20px 28px; }
-  }
-
-  /* ============ NOW BUILDING ============ */
-  .now-list{
-    display:flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .now-item{
-    display:flex;
-    gap: 14px;
-    align-items:flex-start;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .now-item:last-child{ border-bottom:none; }
-  .now-item .dot{ margin-top: 7px; flex-shrink:0; }
-  .now-item h3{
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 15px;
-    margin: 0 0 4px;
-    color: var(--cream);
-  }
-  .now-item p{
-    margin:0;
-    color: var(--cream-dim);
-    font-size: 14px;
-    max-width: 560px;
-  }
-
-  /* ============ CTA ============ */
-  .tone-sage{ color: var(--sage); }
-  .cta-section{ padding: 64px 0 72px; }
-  .cta-panel{
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 44px 40px;
-  }
-  .cta-status{
-    display:flex;
-    align-items:center;
-    gap: 9px;
-    margin-bottom: 18px;
-  }
-  .cta-heading{
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
-    color: var(--cream);
-    margin: 0 0 14px;
-    letter-spacing: -0.01em;
-  }
-  .cta-sub{
-    color: var(--cream-dim);
-    font-size: 16px;
-    max-width: 520px;
-    margin: 0 0 30px;
-  }
-  .cta-buttons{
-    display:flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .btn{
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 13px 22px;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-  }
-  .btn-primary{ background: var(--copper); color: var(--ink); }
-  .btn-primary:hover{ background: #D98E4E; }
-  .btn-secondary{ border: 1px solid var(--line); color: var(--cream); }
-  .btn-secondary:hover{ border-color: var(--copper); color: var(--copper); }
-
-  @media (max-width: 640px){
-    .cta-section{ padding: 44px 0 56px; }
-    .cta-panel{ padding: 32px 24px; }
-  }
-  @media (max-width: 480px){
-    .cta-panel{ padding: 28px 18px; }
-    .cta-buttons{ flex-direction: column; }
-    .btn{ width: 100%; justify-content: center; }
-  }
-
-  /* ============ FOOTER ============ */
-  footer{
-    border-top: 1px solid var(--line);
-    padding: 40px 0 56px;
-  }
-  .footer-row{
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    flex-wrap: wrap;
-    gap: 18px;
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--cream-dim);
-  }
-  .footer-row a{ color: var(--copper); }
-  .footer-row a:hover{ text-decoration: underline; }
-  .footer-note{
-    margin-top: 18px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: #565B66;
-  }
+@media (max-width: 400px) {
+  .sidebar { padding: 28px 18px; }
+  .content { padding: 28px 18px 64px; }
+}
 
 </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="nav-brand" href="#top"><span class="dot"></span>e.ayine-nongre<span class="nav-tag"> // backend</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#changelog"><span class="ver">v0.1–0.3 </span><span class="full">Changelog</span><span class="short">Log</span></a>
-        <a href="#endpoints"><span class="full">Endpoints</span><span class="short">API</span></a>
-        <a href="#now">Now</a>
-        <a href="#contact">Contact</a>
+<div class="layout">
+
+  <!-- ── SIDEBAR ─────────────────────────── -->
+  <aside class="sidebar">
+
+    <h1 class="sidebar-name">Eugene Atinbire<br>Ayine-nongre</h1>
+    <p class="sidebar-role">Backend Engineer — C# / .NET, Angular</p>
+    <p class="sidebar-location">Accra, Ghana</p>
+
+    <div class="sidebar-divider"></div>
+
+    <p class="sidebar-avail">
+      <span class="avail-dot"></span>Open to contract &amp; freelance
+    </p>
+
+    <div class="sidebar-links">
+      <a href="https://github.com/Ayine-nongre" target="_blank" rel="noopener">github.com/Ayine-nongre</a>
+      <a href="https://linkedin.com/in/ayine-nongre" target="_blank" rel="noopener">linkedin.com/in/ayine-nongre</a>
+    </div>
+
+    <p class="stack-label">Stack</p>
+    <div class="stack-list">
+      <span>C# / .NET · ASP.NET Core</span>
+      <span>Angular · Blazor</span>
+      <span>Node.js · Express · NestJS</span>
+      <span>SQL Server · MySQL · MongoDB</span>
+      <span>React Native</span>
+      <span>Redis · Docker · Git</span>
+    </div>
+
+    <div class="sidebar-divider" style="margin-top:auto; padding-top:28px;"></div>
+    <p class="sidebar-edu">BSc Computer Science<br>KNUST · 2024</p>
+
+  </aside>
+
+  <!-- ── CONTENT ─────────────────────────── -->
+  <main class="content">
+
+    <p class="content-intro">
+      I build backend systems, billing logic that has to be exactly right, APIs that
+      have to stay up, platforms that need to scale without falling over. Currently at
+      Devnest Systems working on an EMR used by hospitals. Before that, waste management
+      and admin platforms at Spicodex, and a student management system migration at KNUST.
+      In the gaps I build infrastructure from scratch: rate limiters, gateways, search
+      engines one system at a time, without shortcuts.
+    </p>
+
+    <!-- WHAT I DO -->
+    <div class="sec">
+      <h2 class="sec-heading">What I do</h2>
+      <div class="prose">
+        <p>
+          <strong>Reliability by design.</strong> I think about load, failure modes, and
+          recovery before writing the first line — not as a patch after something breaks.
+          Three infrastructure systems built and reviewed against that standard, in sequence.
+        </p>
+        <p>
+          <strong>Full feature ownership.</strong> API, front end, database schema, I can
+          own a feature end to end without the gaps that come from handing off between layers.
+        </p>
+        <p>
+          <strong>Healthcare experience.</strong> The EMR I work on handles patient records,
+          billing, and lab results. Wrong data has real consequences. That standard of care
+          is what I bring to other projects.
+        </p>
+        <p>
+          <strong>Clean handoff.</strong> Everything ships documented. Nothing leaves as a
+          black box.
+        </p>
       </div>
     </div>
-  </nav>
 
-  <header class="hero" id="top">
-    <div class="wrap">
-
-      <div class="response-card">
-        <div class="response-head">
-          <span class="pill get">GET</span>
-          <span class="path">/engineer/ayine-nongre</span>
-          <span class="pill status-ok">200 OK</span>
-        </div>
-        <div class="response-body">
-          <div class="field"><span class="key">name</span><span class="val">Eugene Atinbire Ayine-nongre</span></div>
-          <div class="field"><span class="key">role</span><span class="val">Backend Engineer — C# / .NET</span></div>
-          <div class="field"><span class="key">based</span><span class="val">Accra, Ghana</span></div>
-          <div class="field"><span class="key">status</span><span class="val"><span class="dot building"></span>actively building</span></div>
-        </div>
-      </div>
-
-      <div class="hero-text" id="about">
-        <h1>Most of what I build is meant to be <em>invisible.</em></h1>
-        <p class="hero-sub">Rate limiters, gateways, search indexes — the parts of a system nobody notices until they fail. I'm a backend engineer working across enterprise platforms and personal infrastructure projects, spending an hour or two most days getting better at building the unglamorous parts properly.</p>
-        <div class="value-row">
-          <span class="value-pill">Builds software that doesn't break under pressure</span>
-          <span class="value-pill">Handles both the engine and the interface</span>
-          <span class="value-pill">Experience with healthcare software</span>
-        </div>
-      </div>
-
+    <!-- WORK -->
+    <div class="sec" id="work">
+      <h2 class="sec-heading">Work</h2>
+      <table class="work-table">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>What it is</th>
+            <th>Outcome</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-name">RateLimiter</td>
+            <td class="td-what">Token bucket + sliding window, Redis-backed with atomic Lua scripts, ASP.NET Core middleware</td>
+            <td class="td-outcome">10k concurrent req</td>
+            <td class="td-status s">shipped</td>
+            <td class="td-link"><a href="https://github.com/Ayine-nongre/RateLimiter" target="_blank" rel="noopener">↗</a></td>
+          </tr>
+          <tr>
+            <td class="td-name">ApiGateway</td>
+            <td class="td-what">Reverse proxy, JSON-driven routing, Polly circuit breaking, round-robin balancing</td>
+            <td class="td-outcome">—</td>
+            <td class="td-status s">shipped</td>
+            <td class="td-link"><a href="https://github.com/Ayine-nongre/ApiGateway" target="_blank" rel="noopener">↗</a></td>
+          </tr>
+          <tr>
+            <td class="td-name">queryly</td>
+            <td class="td-what">CLI database tool for SQL Server, SQLite, MySQL, PostgreSQL — open source</td>
+            <td class="td-outcome">MIT licensed</td>
+            <td class="td-status s">shipped</td>
+            <td class="td-link"><a href="https://github.com/Ayine-nongre/queryly" target="_blank" rel="noopener">↗</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </header>
 
-  <main>
+    <!-- EXPERIENCE -->
+    <div class="sec" id="experience">
+      <h2 class="sec-heading">Experience</h2>
+      <div class="tl">
 
-    <section class="philosophy">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">001 / for your project</span>
-            <h2>Built to keep working</h2>
+        <div class="tl-row">
+          <span class="tl-year">2025–</span>
+          <div class="tl-right">
+            <strong>Backend Engineer · Devnest Systems</strong>
+            <p>Working on an EMR platform used by hospitals. Built a billing system
+            handling co-pay splits, session-based billing, and bad debt tracking.
+            Integrated external accounting, insurance, and cloud reporting platforms.
+            Led the upgrade from .NET Core to .NET 9 and Angular 16 to 19.
+            Owns financial, operational, and inventory reporting infrastructure.</p>
           </div>
         </div>
 
-        <p>My main focus is making sure software keeps working when it matters most — when usage spikes, when something else fails, when people are depending on it. That means thinking about what could go wrong before it happens, not patching it after.</p>
-        <p>I currently work on an <strong>electronic medical records (EMR) system</strong> used by hospitals — handling billing, reports, and a mobile app that lets patients check their records, lab results, prescriptions, and book appointments from their phone. I've also worked on a school management platform and a retail point-of-sale system.</p>
-
-        <div class="stat-row">
-          <div class="stat"><span class="num">3</span><span class="lbl">systems shipped solo</span></div>
-          <div class="stat"><span class="num">2</span><span class="lbl">production platforms in flight</span></div>
-          <div class="stat"><span class="num">1–2h</span><span class="lbl">deliberate practice / day</span></div>
-        </div>
-
-        <span class="eyebrow eyebrow-sub">What this means for you</span>
-        <div class="now-list">
-          <div class="now-item">
-            <span class="dot shipped"></span>
-            <div>
-              <h3>Reliable under pressure</h3>
-              <p>Your software stays up and stays fast, even when lots of people are using it at once.</p>
-            </div>
-          </div>
-          <div class="now-item">
-            <span class="dot shipped"></span>
-            <div>
-              <h3>One person, the whole feature</h3>
-              <p>I can take an idea from "we need this" all the way to a working product — back end and front end both.</p>
-            </div>
-          </div>
-          <div class="now-item">
-            <span class="dot shipped"></span>
-            <div>
-              <h3>Comfortable with sensitive data</h3>
-              <p>I build for healthcare, where mistakes have real consequences — so accuracy and care aren't optional.</p>
-            </div>
-          </div>
-          <div class="now-item">
-            <span class="dot shipped"></span>
-            <div>
-              <h3>Easy to hand off</h3>
-              <p>Everything I build is documented clearly, so your team isn't left guessing later.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="changelog" id="changelog">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">002 / history</span>
-            <h2>Changelog</h2>
+        <div class="tl-row">
+          <span class="tl-year">2024–25</span>
+          <div class="tl-right">
+            <strong>Software Engineer · UITS, KNUST</strong>
+            <p>Helped migrate a desktop-based Student Management System to a modern
+            web platform using Blazor and C#. Worked across component design,
+            sprint planning, code review, and QA.</p>
           </div>
         </div>
 
-        <article class="release">
-          <div class="release-tag">
-            <span class="release-version">v0.1</span>
-            <span class="release-year">2023</span>
-          </div>
-          <div class="release-body">
-            <h3 class="release-title">Foundations</h3>
-            <p>Two intensive programming bootcamps — ALX and HNG — and a stack of unglamorous exercises: a Unix shell written from scratch in C, sorting algorithms, binary trees, an Airbnb backend clone built four separate times with four different stacks. This is where the fundamentals got load-bearing.</p>
-            <div class="tag-row">
-              <span class="tag">C</span><span class="tag">Python</span><span class="tag">Data Structures</span><span class="tag">Linux</span>
-            </div>
-            <div class="repo-links">
-              <a href="https://github.com/Ayine-nongre/simple_shell" target="_blank" rel="noopener">simple_shell</a>
-              <a href="https://github.com/Ayine-nongre/binary_trees" target="_blank" rel="noopener">binary_trees</a>
-              <a href="https://github.com/Ayine-nongre/alx-backend" target="_blank" rel="noopener">alx-backend</a>
-              <a href="https://github.com/Ayine-nongre/AirBnB_clone_v4" target="_blank" rel="noopener">AirBnB_clone_v4</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="release">
-          <div class="release-tag">
-            <span class="release-version">v0.2</span>
-            <span class="release-year">2024–2025</span>
-          </div>
-          <div class="release-body">
-            <h3 class="release-title">Building for people</h3>
-            <p>The exercises turned into things other people would actually use: an access manager for a multi-tenant school platform, an SMS service for a small business, a mobile app that parses bank SMS to track spending automatically, another that connects students with mental health counselors. The constraints got real — actual users, actual data, actual consequences for getting it wrong.</p>
-            <div class="tag-row">
-              <span class="tag">Node.js</span><span class="tag">React Native</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Supabase</span>
-            </div>
-            <div class="repo-links">
-              <a href="https://github.com/Ayine-nongre/Access-key-manager" target="_blank" rel="noopener">Access-key-manager</a>
-              <a href="https://github.com/Ayine-nongre/PocketTrail" target="_blank" rel="noopener">PocketTrail</a>
-              <a href="https://github.com/Ayine-nongre/MindConnect" target="_blank" rel="noopener">MindConnect</a>
-              <a href="https://github.com/Ayine-nongre/SMS-sender" target="_blank" rel="noopener">SMS-sender</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="release current">
-          <div class="release-tag">
-            <span class="release-version">v0.3</span>
-            <span class="release-year">2025–present</span>
-          </div>
-          <div class="release-body">
-            <h3 class="release-title">Deliberate practice <span class="badge-progress">in progress</span></h3>
-            <p>A structured program I set for myself: one production-grade backend system at a time, written without help and reviewed without mercy. No shortcuts, no scaffolding — just the brief and the build. The current chapter, detailed below.</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="endpoints" id="endpoints">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">003 / v0.3 in detail</span>
-            <h2>Endpoints</h2>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div class="endpoint-head">
-            <span class="pill post">POST</span>
-            <span class="path">/systems/rate-limiter</span>
-            <span class="endpoint-status"><span class="dot shipped"></span>200 shipped</span>
-          </div>
-          <p class="endpoint-desc">A production-grade rate limiter combining token bucket and sliding window algorithms, backed by Redis with atomic Lua scripts, wired into ASP.NET Core middleware and load-tested under real traffic with k6.</p>
-          <div class="tag-row">
-            <span class="tag">C#</span><span class="tag">Redis</span><span class="tag">Lua</span><span class="tag">ASP.NET Core</span><span class="tag">k6</span>
-          </div>
-          <div class="endpoint-foot">
-            <a href="https://github.com/Ayine-nongre/RateLimiter" target="_blank" rel="noopener">View source on GitHub →</a>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div class="endpoint-head">
-            <span class="pill post">POST</span>
-            <span class="path">/systems/api-gateway</span>
-            <span class="endpoint-status"><span class="dot shipped"></span>200 shipped</span>
-          </div>
-          <p class="endpoint-desc">A reverse proxy that routes traffic by JSON-driven config, retries and circuit-breaks failures with Polly, and balances load round-robin across upstream services.</p>
-          <div class="tag-row">
-            <span class="tag">C#</span><span class="tag">Polly</span><span class="tag">Reverse Proxy</span><span class="tag">.NET 8</span>
-          </div>
-          <div class="endpoint-foot">
-            <a href="https://github.com/Ayine-nongre/ApiGateway" target="_blank" rel="noopener">View source on GitHub →</a>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div class="endpoint-head">
-            <span class="pill get">GET</span>
-            <span class="path">/systems/search-engine</span>
-            <span class="endpoint-status"><span class="dot building"></span>102 building</span>
-          </div>
-          <p class="endpoint-desc">An inverted index built from the ground up — tokenizing, ranking with TF-IDF, and serving results over a REST API. Currently at the file persistence layer.</p>
-          <div class="tag-row">
-            <span class="tag">C#</span><span class="tag">Inverted Index</span><span class="tag">TF-IDF</span><span class="tag">REST</span>
-          </div>
-          <div class="endpoint-foot">
-            <a href="https://github.com/Ayine-nongre/SearchEngine" target="_blank" rel="noopener">View source on GitHub →</a>
-          </div>
-        </div>
-
-        <div class="endpoint">
-          <div class="endpoint-head">
-            <span class="pill get">GET</span>
-            <span class="path">/tools/queryly</span>
-            <span class="endpoint-status"><span class="dot shipped"></span>200 shipped · ⭐ 1</span>
-          </div>
-          <p class="endpoint-desc">A CLI database companion supporting SQL Server, SQLite, MySQL, and PostgreSQL — built with Spectre.Console and MIT licensed.</p>
-          <div class="tag-row">
-            <span class="tag">C#</span><span class="tag">.NET 8</span><span class="tag">Spectre.Console</span>
-          </div>
-          <div class="endpoint-foot">
-            <a href="https://github.com/Ayine-nongre/queryly" target="_blank" rel="noopener">View source on GitHub →</a>
+        <div class="tl-row">
+          <span class="tl-year">2024–25</span>
+          <div class="tl-right">
+            <strong>Backend Engineer · Spicodex</strong>
+            <p>Led backend development on a waste management platform — booking
+            services, real-time driver routing, and online payments — built on
+            Node.js, Express, and MySQL. Also built the admin system for a dating
+            platform: user management, merchant payouts, dispute resolution, and
+            automated approval workflows.</p>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
 
-    <section class="now" id="now">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">004 / in flight</span>
-            <h2>Now building</h2>
-          </div>
-        </div>
-
-        <div class="now-list">
-          <div class="now-item">
-            <span class="dot building"></span>
-            <div>
-              <h3>Weekly commit report generator</h3>
-              <p>A personal CLI tool that pulls GitHub activity, local git history, and Figma version history into a single weekly markdown report, summarized by a locally running Llama 3.1 model. Fully designed, heading into the build.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- CONTACT -->
+    <div class="sec" id="contact">
+      <h2 class="sec-heading">Contact</h2>
+      <p class="contact-note">Open to contract and freelance work, fully remote.</p>
+      <a class="contact-email" href="mailto:eugeneatinbire@gmail.com">
+        eugeneatinbire@gmail.com
+      </a>
+    </div>
 
   </main>
 
-  <section class="cta-section" id="contact">
-    <div class="wrap">
-      <div class="cta-panel">
-        <div class="cta-status"><span class="dot shipped"></span><span class="eyebrow tone-sage">open to new projects</span></div>
-        <h2 class="cta-heading">Have a project that needs this?</h2>
-        <p class="cta-sub">Backend systems, full-stack builds, or a second set of eyes on something already in flight — I'm open to new work, in Ghana or remote.</p>
-        <div class="cta-buttons">
-          <a class="btn btn-primary" href="mailto:hello@example.com">Email me →</a>
-          <a class="btn btn-secondary" href="https://github.com/Ayine-nongre" target="_blank" rel="noopener">View GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <div class="footer-row">
-        <span>© 2026 Eugene Atinbire Ayine-nongre</span>
-        <a href="https://github.com/Ayine-nongre" target="_blank" rel="noopener">github.com/Ayine-nongre</a>
-      </div>
-    </div>
-  </footer>
+</div>
 
 </body>
 </html>
